@@ -25,11 +25,13 @@ public class BookParser {
 
             for (JsonNode item : items) {
                 JsonNode bookVolume = item.get("volumeInfo");
+                JsonNode imageLinks = bookVolume.get("imageLinks");
 
                 Book book = new Book(
                         item.get("id").asText(),
                         bookVolume.get("title").asText(),
-                        "None");
+                        "None",
+                        imageLinks.get("thumbnail").asText());
 
                 if (bookVolume.has("authors")) {
                     book.setAuthors(bookVolume.get("authors").toString());

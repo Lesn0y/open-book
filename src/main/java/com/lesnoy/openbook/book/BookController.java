@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin
+@CrossOrigin(origins = "http://127.0.0.1:4000")
 @RestController
 @RequestMapping("/api/v1/book")
 public class BookController {
@@ -17,42 +17,39 @@ public class BookController {
         this.bookApi = bookApi;
     }
 
-//  Возвращает список книг в которых содержится переданная строка
     @GetMapping("/{text}")
     public ResponseEntity<?> getBooksByText(@PathVariable("text") String text) {
         List<Book> books = bookApi.findBookByText(text);
         if (!books.isEmpty()) {
             return new ResponseEntity<>(books,
-                                        HttpStatus.OK);
+                    HttpStatus.OK);
         } else {
             return new ResponseEntity<>("Text - " + text + " not found",
-                                        HttpStatus.NOT_FOUND);
+                    HttpStatus.NOT_FOUND);
         }
     }
 
-//  Возвращает список книг в которых содержится переданный заголовок
     @GetMapping("/title/{title}")
     public ResponseEntity<?> getBooksByTitle(@PathVariable("title") String title) {
         List<Book> books = bookApi.findBooksByTitle(title);
         if (!books.isEmpty()) {
             return new ResponseEntity<>(books,
-                                        HttpStatus.OK);
+                    HttpStatus.OK);
         } else {
             return new ResponseEntity<>("Title - " + title + " not found",
-                                        HttpStatus.NOT_FOUND);
+                    HttpStatus.NOT_FOUND);
         }
     }
 
-//  Возвращает список книг в которых содержится переданный автор
     @GetMapping("/author/{author}")
     public ResponseEntity<?> getBooksByAuthor(@PathVariable("author") String author) {
         List<Book> books = bookApi.findBookByAuthor(author);
         if (!books.isEmpty()) {
             return new ResponseEntity<>(books,
-                                        HttpStatus.OK);
+                    HttpStatus.OK);
         } else {
             return new ResponseEntity<>("Author - " + author + " not found",
-                                        HttpStatus.NOT_FOUND);
+                    HttpStatus.NOT_FOUND);
         }
     }
 
