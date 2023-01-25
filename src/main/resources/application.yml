@@ -1,2 +1,9 @@
-book-service:
-  request-url: https://www.googleapis.com/books/v1/volumes?q=inauthor
+spring:
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/lesnoydb
+    username: lesnoy
+    password: root
+    driver-class-name: org.postgresql.Driver
