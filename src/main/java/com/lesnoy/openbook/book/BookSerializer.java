@@ -29,7 +29,10 @@ public class BookSerializer extends StdSerializer<Book> {
             gen.writeNumberField("id", value.getAuthor().getId());
             gen.writeStringField("full_name", value.getAuthor().getFullName());
         gen.writeEndObject();
-
+        if (!value.getFeedbacks().isEmpty()) {
+            gen.writeNumberField("rating", value.getFeedbacks()
+                    .stream().map(Feedback::getRating).reduce((Long::sum)).get() / value.getFeedbacks().size());
+        }
         gen.writeNumberField("page_count", value.getPageCount());
         gen.writeStringField("subtitle", value.getSubtitle());
         gen.writeStringField("description", value.getDescription());
