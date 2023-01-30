@@ -18,9 +18,10 @@ CREATE TABLE IF NOT EXISTS lesnoydb.open_book.book
 CREATE TABLE IF NOT EXISTS lesnoydb.open_book.user
 (
     id       SERIAL PRIMARY KEY,
-    username VARCHAR(30),
+    name     VARCHAR(30),
     password VARCHAR(255) NOT NULL,
-    email    VARCHAR(255) UNIQUE
+    email    VARCHAR(255) UNIQUE,
+    role     VARCHAR(10)  NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS lesnoydb.open_book.feedback
@@ -34,15 +35,17 @@ CREATE TABLE IF NOT EXISTS lesnoydb.open_book.feedback
 
 CREATE TABLE IF NOT EXISTS lesnoydb.open_book.history
 (
-    user_id  INT REFERENCES lesnoydb.open_book.user (id),
-    book_id  INT REFERENCES lesnoydb.open_book.book (id),
-    date_issue TIMESTAMP NOT NULL,
-    date_return  TIMESTAMP,
+    user_id     INT REFERENCES lesnoydb.open_book.user (id),
+    book_id     INT REFERENCES lesnoydb.open_book.book (id),
+    date_issue  TIMESTAMP NOT NULL,
+    date_return TIMESTAMP,
     PRIMARY KEY (user_id, book_id)
 );
 
-INSERT INTO open_book.author (id, full_name) VALUES (1, 'Александр Дюма');
-INSERT INTO open_book.author (id, full_name) VALUES (2, 'Уильям Гибсон');
+INSERT INTO open_book.author (id, full_name)
+VALUES (1, 'Александр Дюма');
+INSERT INTO open_book.author (id, full_name)
+VALUES (2, 'Уильям Гибсон');
 
 
 INSERT INTO open_book.book (id, thumbnail_url, book_name, author_id, pagecount, subtitle, description)
@@ -88,15 +91,30 @@ VALUES (3, 'https://s1.livelib.ru/boocover/1007456923/o/6916/Aleksandr_Dyuma__Gr
         'Графиня де Монсоро', 1, 980, 'Когда человека любят все, это значит, что по-настоящему его не любит никто.',
         'Действие романа знаменитого французского писателя Александра Дюма происходит в эпоху гугенотских войн, во времена правления Генриха III. Но исторические события – описанные ярко и убедительно – являются лишь фоном сложной любовной интриги. Коварству, развращенности и лицемерию королевского двора автор противопоставляет благородство, искренность и верность бесстрашного графа де Бюсси и его возлюбленной Дианы.');
 
-INSERT INTO open_book."user" (id, username, password, email) VALUES (1, 'Lesnoy', '$2a$12$JBTXBL44AZfOL/fzdOdG5e9Ch1fuva2fVnC0v0VIIEy8Br2XkGClm', 'kilril01@mail.ru');
-INSERT INTO open_book."user" (id, username, password, email) VALUES (2, 'Tima', '$2a$12$e0VKWXcCGLcmJA1uMu9BDOLeYrDYwXl9pvNEExOLcsnODbCyYdLvy', 'tima@mail.kz');
+INSERT INTO open_book."user" (id, name, password, email, role)
+VALUES (1, 'Lesnoy', '$2a$12$JBTXBL44AZfOL/fzdOdG5e9Ch1fuva2fVnC0v0VIIEy8Br2XkGClm', 'kilril01@mail.ru', 'ADMIN');
+INSERT INTO open_book."user" (id, name, password, email, role)
+VALUES (2, 'Tima', '$2a$12$e0VKWXcCGLcmJA1uMu9BDOLeYrDYwXl9pvNEExOLcsnODbCyYdLvy', 'tima@mail.kz', 'USER');
 
-INSERT INTO open_book.history (user_id, book_id, date_issue, date_return) VALUES (1, 1, '2020-04-21 10:00:00.000000', '2020-05-14 15:00:24.000000');
-INSERT INTO open_book.history (user_id, book_id, date_issue, date_return) VALUES (1, 2, '2021-01-25 10:04:16.000000', '2021-02-05 13:01:23.000000');
-INSERT INTO open_book.history (user_id, book_id, date_issue, date_return) VALUES (1, 6, '2022-08-03 07:01:38.000000', '2023-09-25 14:01:51.000000');
-INSERT INTO open_book.history (user_id, book_id, date_issue, date_return) VALUES (2, 6, '2023-01-01 10:02:08.000000', '2023-01-25 15:02:33.000000');
+INSERT INTO open_book.history (user_id, book_id, date_issue, date_return)
+VALUES (1, 1, '2020-04-21 10:00:00.000000', '2020-05-14 15:00:24.000000');
+INSERT INTO open_book.history (user_id, book_id, date_issue, date_return)
+VALUES (1, 2, '2021-01-25 10:04:16.000000', '2021-02-05 13:01:23.000000');
+INSERT INTO open_book.history (user_id, book_id, date_issue, date_return)
+VALUES (1, 6, '2022-08-03 07:01:38.000000', '2023-09-25 14:01:51.000000');
+INSERT INTO open_book.history (user_id, book_id, date_issue, date_return)
+VALUES (2, 6, '2023-01-01 10:02:08.000000', '2023-01-25 15:02:33.000000');
 
-INSERT INTO open_book.feedback (user_id, book_id, review, rating) VALUES (1, 6, '"Нейромант" – отправная точка киберпанка, пророческая книга, открывшая путь новому жанру. Гибсон, имея крайне скудные познания о компьютерах, не только многое предугадал, но и оказал некоторое влияние на пути их развития. Ведь именно он является отцом термина «киберпространство» и парадигмы визуализации этого самого киберпространства.', 4.9);
-INSERT INTO open_book.feedback (user_id, book_id, review, rating) VALUES (2, 6, 'Стиль Гибсона может понравиться не всем – тягучий, неторопливый, совсем не «драйвовый» и не «экшеновый». Да и фантастикой эти романы сейчас назвать довольно сложно – за тридцать лет, прошедших с момента написания «Нейроманта» мир здорово шагнул вперёд, и в этом самом киберпанке (может, лишь самую малость менее утрированном) мы теперь живём и сами. Временами попадание автора настолько точно (не по части технических подробностей, но по части того, как поменяется общество и люди), что иначе как пророчеством это назвать сложно. Специфичные вещи, которые сейчас нельзя порекомендовать всем и каждому, но если вы хотите узнать, с чего пошёл жанр киберпанка, и подивиться тому, как то, что некогда считалось отмороженной фантазией, со временем превратилось почти в производственный роман в жанре капреализма – почитайте.', 4.6);
-INSERT INTO open_book.feedback (user_id, book_id, review, rating) VALUES (1, 1, 'Классическое и наиболее известное сочинение Александра Дюма о мести, справедливости и неотвратимости возмездия. Лучше всего книгу читать в подростковом возрасте, когда не испорчен бытом и душа хочет романтических приключений и дальних странствий, не вырытых кладов и верной дружбы. При чтении в сегодняшнее время бросается в глаза некоторая наивность персонажей, их мотивации и действий. Но вполне возможно, что люди времен Французской Революции и были именно такими как их показал Дюма. Многословность повествования и некоторые повторы объясняются просто – автор получал гонорар за написанные страницы, поэтому и старался чтобы страниц было подольше. Если не страшит год написания книги, то обязательно нужно читать – «Граф Монте Кристо» заложил основы для всего жанра приключенческой литературы.', 5);
+INSERT INTO open_book.feedback (user_id, book_id, review, rating)
+VALUES (1, 6,
+        '"Нейромант" – отправная точка киберпанка, пророческая книга, открывшая путь новому жанру. Гибсон, имея крайне скудные познания о компьютерах, не только многое предугадал, но и оказал некоторое влияние на пути их развития. Ведь именно он является отцом термина «киберпространство» и парадигмы визуализации этого самого киберпространства.',
+        4.9);
+INSERT INTO open_book.feedback (user_id, book_id, review, rating)
+VALUES (2, 6,
+        'Стиль Гибсона может понравиться не всем – тягучий, неторопливый, совсем не «драйвовый» и не «экшеновый». Да и фантастикой эти романы сейчас назвать довольно сложно – за тридцать лет, прошедших с момента написания «Нейроманта» мир здорово шагнул вперёд, и в этом самом киберпанке (может, лишь самую малость менее утрированном) мы теперь живём и сами. Временами попадание автора настолько точно (не по части технических подробностей, но по части того, как поменяется общество и люди), что иначе как пророчеством это назвать сложно. Специфичные вещи, которые сейчас нельзя порекомендовать всем и каждому, но если вы хотите узнать, с чего пошёл жанр киберпанка, и подивиться тому, как то, что некогда считалось отмороженной фантазией, со временем превратилось почти в производственный роман в жанре капреализма – почитайте.',
+        4.6);
+INSERT INTO open_book.feedback (user_id, book_id, review, rating)
+VALUES (1, 1,
+        'Классическое и наиболее известное сочинение Александра Дюма о мести, справедливости и неотвратимости возмездия. Лучше всего книгу читать в подростковом возрасте, когда не испорчен бытом и душа хочет романтических приключений и дальних странствий, не вырытых кладов и верной дружбы. При чтении в сегодняшнее время бросается в глаза некоторая наивность персонажей, их мотивации и действий. Но вполне возможно, что люди времен Французской Революции и были именно такими как их показал Дюма. Многословность повествования и некоторые повторы объясняются просто – автор получал гонорар за написанные страницы, поэтому и старался чтобы страниц было подольше. Если не страшит год написания книги, то обязательно нужно читать – «Граф Монте Кристо» заложил основы для всего жанра приключенческой литературы.',
+        5);
 
