@@ -31,7 +31,11 @@ public class BookSerializer extends StdSerializer<Book> {
         gen.writeEndObject();
         if (!value.getFeedbacks().isEmpty()) {
             gen.writeNumberField("rating", value.getFeedbacks()
-                    .stream().map(Feedback::getRating).reduce((Long::sum)).get() / value.getFeedbacks().size());
+                    .stream()
+                    .map(Feedback::getRating)
+                    .reduce((Long::sum)).get() / value.getFeedbacks().size());
+        } else {
+            gen.writeNumberField("rating", 0);
         }
         gen.writeNumberField("page_count", value.getPageCount());
         gen.writeStringField("subtitle", value.getSubtitle());
