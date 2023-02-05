@@ -1,5 +1,6 @@
 package com.lesnoy.openbook.book;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,13 +10,10 @@ import java.util.List;
 @CrossOrigin(origins = "http://127.0.0.1:4000")
 @RestController
 @RequestMapping("/api/v1/book")
+@RequiredArgsConstructor
 public class BookController {
 
     private final BookRepository bookRepository;
-
-    public BookController(BookRepository bookRepository) {
-        this.bookRepository = bookRepository;
-    }
 
     @GetMapping
     public List<Book> getAllBook() {
