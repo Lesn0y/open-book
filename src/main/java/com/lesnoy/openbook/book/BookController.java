@@ -13,18 +13,24 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BookController {
 
-    private final BookRepository bookRepository;
+    private final BookService bookService;
 
     @GetMapping
-    public List<Book> getAllBook() {
-        return bookRepository.findAll();
+    public ResponseEntity<List<Book>> getAllBook() {
+        return ResponseEntity.ok(bookService.getAll());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Book> getBookById(@PathVariable("id") int id) {
+        try {
+            return ResponseEntity.ok(bookService.getById(id));
+        } catch (RuntimeException re) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @PostMapping
-    public ResponseEntity<?> saveBook(@RequestBody Book book) {
-        bookRepository.save(book);
-        return new ResponseEntity<>(book,
-                HttpStatus.CREATED
-        );
+    public ResponseEntity<Book> saveBook(@RequestBody Book book) {
+        return new ResponseEntity<>(bookService.save(book), HttpStatus.CREATED);
     }
 }
