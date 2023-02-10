@@ -1,9 +1,0 @@
-spring:
-  jpa:
-    database: POSTGRESQL
-    show-sql: true
-  datasource:
-    url: jdbc:postgresql://localhost:5432/lesnoydb
-    username: lesnoy
-    password: root
-    driver-class-name: org.postgresql.Driver
