@@ -1,0 +1,18 @@
+<div class="content-grid__element">
+  <a href="#">
+    <img
+      [src]="element.thumbnail_url"
+      class="book-element--thumbnail"
+    />
+  </a>
+  <div class="book-element--info">
+    <p class="book-element--title">{{element.book_name}}</p>
+    <p class="book-element--author">{{element.author}}</p>
+    <p class="book-element--subtitle">{{element.subtitle.length > 40 ?
+                                        element.subtitle.slice(0, 55) + '...' : element.subtitle}}</p>
+    <div class="book-element__footer">
+      <span class="book-element--rating">&#9734;{{element.rating}}</span>
+      <button class="book-element-add__btn">Читать</button>
+    </div>
+  </div>
+</div>
