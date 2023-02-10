@@ -25,10 +25,7 @@ public class BookSerializer extends StdSerializer<Book> {
         gen.writeNumberField("id", value.getId());
         gen.writeStringField("thumbnail_url", value.getThumbnailUrl());
         gen.writeStringField("book_name", value.getName());
-        gen.writeObjectFieldStart("author");
-            gen.writeNumberField("id", value.getAuthor().getId());
-            gen.writeStringField("full_name", value.getAuthor().getFullName());
-        gen.writeEndObject();
+        gen.writeStringField("author", value.getAuthor().getFullName());
         if (!value.getFeedbacks().isEmpty()) {
             gen.writeNumberField("rating", value.getFeedbacks()
                     .stream()
