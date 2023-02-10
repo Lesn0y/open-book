@@ -1,0 +1,15 @@
+spring:
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/lesnoydb
+    username: lesnoy
+    password: root
+    driver-class-name: org.postgresql.Driver
+
+security:
+  jwt-token:
+    secret-key: Ex9uIeLFlS0vLE0gvGena5hLtJTro0EHauxrZ43m1aQ
+
+lesnoy-key: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyQG1haWwucnUiLCJpYXQiOjE2NzUwODY2OTYsImV4cCI6MTY3NTE3MzA5Nn0.WcS8wR7J6oQmU_RjW-CBr3Ln_8u8HYFsWML4rhRdN2s
