@@ -1,4 +1,4 @@
-package com.lesnoy.openbook.author;
+package com.lesnoy.openbook.book.author;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

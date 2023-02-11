@@ -1,6 +1,8 @@
 package com.lesnoy.openbook.book;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,7 +26,12 @@ public class BookService {
     }
 
     @Transactional
-    public List<Book> getAll() {
-        return bookRepository.findAll();
+    public Page<List<Book>> getAll(int page, int size) {
+        return bookRepository.findAll(PageRequest.of(page, size));
+    }
+
+    @Transactional
+    public Page<List<Book>> getBookByGenre(String genre, int page, int size) {
+        return bookRepository.findAllByGenre(genre, PageRequest.of(page, size));
     }
 }

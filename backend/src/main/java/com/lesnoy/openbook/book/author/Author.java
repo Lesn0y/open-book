@@ -1,4 +1,4 @@
-package com.lesnoy.openbook.author;
+package com.lesnoy.openbook.book.author;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.lesnoy.openbook.book.Book;

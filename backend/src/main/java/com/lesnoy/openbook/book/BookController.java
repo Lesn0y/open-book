@@ -1,6 +1,7 @@
 package com.lesnoy.openbook.book;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,8 +17,14 @@ public class BookController {
     private final BookService bookService;
 
     @GetMapping
-    public ResponseEntity<List<Book>> getAllBook() {
-        return ResponseEntity.ok(bookService.getAll());
+    public ResponseEntity<Page<List<Book>>> getAllBook(
+            @RequestParam(value = "genre", required = false) String genre,
+            @RequestParam(value = "page", required = false, defaultValue = "0") Integer page,
+            @RequestParam(value = "count", required = false, defaultValue = "12") Integer count) {
+        if (genre != null) {
+            return ResponseEntity.ok(bookService.getBookByGenre(genre, page, count));
+        }
+        return ResponseEntity.ok(bookService.getAll(page, count));
     }
 
     @GetMapping("/{id}")
