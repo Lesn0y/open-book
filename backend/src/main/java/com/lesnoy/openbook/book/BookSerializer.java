@@ -3,6 +3,7 @@ package com.lesnoy.openbook.book;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
+import com.lesnoy.openbook.book.genre.Genre;
 import com.lesnoy.openbook.feedback.Feedback;
 import com.lesnoy.openbook.history.History;
 
@@ -36,9 +37,14 @@ public class BookSerializer extends StdSerializer<Book> {
         }
         gen.writeNumberField("page_count", value.getPageCount());
         gen.writeStringField("subtitle", value.getSubtitle());
+        gen.writeArrayFieldStart("genre");
+        for (Genre genre : value.getGenreList()) {
+            gen.writeString(genre.getName());
+        }
+        gen.writeEndArray();
         gen.writeStringField("description", value.getDescription());
         gen.writeArrayFieldStart("feedbacks");
-        for(Feedback feedback : value.getFeedbacks()){
+        for (Feedback feedback : value.getFeedbacks()) {
             gen.writeStartObject();
             gen.writeStringField("username", feedback.getUser().getUsername());
             gen.writeStringField("review", feedback.getReview());
@@ -47,7 +53,7 @@ public class BookSerializer extends StdSerializer<Book> {
         }
         gen.writeEndArray();
         gen.writeArrayFieldStart("history");
-        for(History history : value.getHistory()){
+        for (History history : value.getHistory()) {
             gen.writeStartObject();
             gen.writeStringField("username", history.getUser().getUsername());
             gen.writeStringField("date_issue", String.valueOf(history.getDateIssue()));

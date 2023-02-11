@@ -42,6 +42,27 @@ CREATE TABLE IF NOT EXISTS lesnoydb.open_book.history
     PRIMARY KEY (user_id, book_id)
 );
 
+CREATE TABLE IF NOT EXISTS lesnoydb.open_book.genre
+(
+    id         SERIAL PRIMARY KEY,
+    genre_name VARCHAR(30) UNIQUE NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS lesnoydb.open_book.book_genre
+(
+    book_id  INT REFERENCES lesnoydb.open_book.book (id),
+    genre_id INT REFERENCES lesnoydb.open_book.genre (id)
+);
+
+INSERT INTO open_book.genre(id, genre_name)
+VALUES (1, 'Фантастика');
+INSERT INTO open_book.genre(id, genre_name)
+VALUES (2, 'Романы');
+INSERT INTO open_book.genre(id, genre_name)
+VALUES (3, 'Ужасы');
+INSERT INTO open_book.genre(id, genre_name)
+VALUES (4, 'Детективы');
+
 INSERT INTO open_book.author (id, full_name)
 VALUES (1, 'Александр Дюма');
 INSERT INTO open_book.author (id, full_name)
@@ -78,9 +99,7 @@ VALUES (6, 'https://s1.livelib.ru/boocover/1002828209/o/d373/Uilyam_Gibson__Nejr
 INSERT INTO open_book.book (id, thumbnail_url, book_name, author_id, pagecount, subtitle, description)
 VALUES (5, 'https://s1.livelib.ru/boocover/1003036277/o/3a63/Aleksandr_Dyuma__Chernyj_tyulpan.jpeg', 'Черный тюльпан',
         1, 250, 'В злых мыслях самое страшное то, что злые души постепенно сживаются с ними.', e'Роман «Черный тюльпан» переносит читателей в Голландию, где вокруг прекрасного, как южная ночь, цветка разгораются нешуточные страсти и интриги.
-
 Бесспорно, что Дюма – прекрасный рассказчик, и о чем бы он ни написал, мы чувствуем, чем живут его герои, ощущаем окружающую их эпоху, заражаемся полетом фантазии автора.
-
 ');
 INSERT INTO open_book.book (id, thumbnail_url, book_name, author_id, pagecount, subtitle, description)
 VALUES (2, 'https://s1.livelib.ru/boocover/1006786918/o/2913/Aleksandr_Dyuma__Tri_mushketera.jpeg', 'Три мушкетера', 1,
@@ -118,3 +137,11 @@ VALUES (1, 1,
         'Классическое и наиболее известное сочинение Александра Дюма о мести, справедливости и неотвратимости возмездия. Лучше всего книгу читать в подростковом возрасте, когда не испорчен бытом и душа хочет романтических приключений и дальних странствий, не вырытых кладов и верной дружбы. При чтении в сегодняшнее время бросается в глаза некоторая наивность персонажей, их мотивации и действий. Но вполне возможно, что люди времен Французской Революции и были именно такими как их показал Дюма. Многословность повествования и некоторые повторы объясняются просто – автор получал гонорар за написанные страницы, поэтому и старался чтобы страниц было подольше. Если не страшит год написания книги, то обязательно нужно читать – «Граф Монте Кристо» заложил основы для всего жанра приключенческой литературы.',
         5);
 
+INSERT INTO open_book.book_genre(book_id, genre_id)
+VALUES (7, 1);
+INSERT INTO open_book.book_genre(book_id, genre_id)
+VALUES (8, 1);
+INSERT INTO open_book.book_genre(book_id, genre_id)
+VALUES (3, 2);
+INSERT INTO open_book.book_genre(book_id, genre_id)
+VALUES (1, 2);

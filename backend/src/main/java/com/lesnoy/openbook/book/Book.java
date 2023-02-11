@@ -1,7 +1,8 @@
 package com.lesnoy.openbook.book;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.lesnoy.openbook.author.Author;
+import com.lesnoy.openbook.book.author.Author;
+import com.lesnoy.openbook.book.genre.Genre;
 import com.lesnoy.openbook.feedback.Feedback;
 import com.lesnoy.openbook.history.History;
 import jakarta.persistence.*;
@@ -34,6 +35,11 @@ public class Book {
     private int pageCount;
     @Column(name = "subtitle")
     private String subtitle;
+    @ManyToMany
+    @JoinTable(name = "book_genre", schema = "open_book",
+    joinColumns = @JoinColumn(name = "book_id"),
+    inverseJoinColumns = @JoinColumn(name = "genre_id"))
+    private List<Genre> genreList;
     @Column(name = "description")
     private String description;
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
