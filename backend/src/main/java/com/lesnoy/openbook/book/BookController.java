@@ -18,7 +18,7 @@ public class BookController {
 
     @GetMapping
     public ResponseEntity<Page<List<Book>>> getAllBook(
-            @RequestParam(value = "genre", required = false) String genre,
+            @RequestParam(value = "genre", required = false) Integer genre,
             @RequestParam(value = "page", required = false, defaultValue = "0") Integer page,
             @RequestParam(value = "count", required = false, defaultValue = "12") Integer count) {
         if (genre != null) {

@@ -31,7 +31,7 @@ public class BookService {
     }
 
     @Transactional
-    public Page<List<Book>> getBookByGenre(String genre, int page, int size) {
-        return bookRepository.findAllByGenre(genre, PageRequest.of(page, size));
+    public Page<List<Book>> getBookByGenre(Integer genre, int page, int size) {
+        return bookRepository.findAllByGenreId(genre, PageRequest.of(page, size));
     }
 }

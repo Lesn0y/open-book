@@ -16,9 +16,9 @@ public interface BookRepository extends CrudRepository<Book, Integer> {
             "FROM open_book.book_genre " +
             "INNER JOIN open_book.book b on b.id = open_book.book_genre.book_id " +
             "INNER JOIN open_book.genre g on g.id = open_book.book_genre.genre_id " +
-            "WHERE g.genre_name = :genre",
+            "WHERE g.id = :genre",
             nativeQuery = true)
-    Page<List<Book>> findAllByGenre(@Param("genre") String genre, Pageable pageable);
+    Page<List<Book>> findAllByGenreId(@Param("genre") Integer genre, Pageable pageable);
 
     Page<List<Book>> findAll(Pageable pageable);
 }
