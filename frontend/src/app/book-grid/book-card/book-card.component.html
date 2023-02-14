@@ -1,5 +1,5 @@
 <div class="content-grid__element">
-  <a href="#">
+  <a [routerLink]="['/book', element.id]">
     <img
       [src]="element.thumbnail_url"
       class="book-element--thumbnail"

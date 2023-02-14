@@ -1,0 +1,8 @@
+.content-grid__block {
+  margin-top: 50px;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 256px);
+  column-gap: 30px;
+  row-gap: 50px;
+}

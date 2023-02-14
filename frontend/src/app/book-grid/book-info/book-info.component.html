@@ -1,0 +1,41 @@
+<div class="main__block">
+  <section class="book__section">
+    <div class="book__section-up">
+      <img
+        [src]="book.thumbnail_url"
+        class="book--thumbnail"/>
+      <div class="book--info">
+        <p class="book--title">{{book.book_name}}</p>
+        <p class="book--author">
+          <span class="book--quality">Автор: </span>{{book.author}}
+        </p>
+        <p class="book--page-count">
+          <span class="book--quality">Количество страниц: </span>{{book.page_count}}
+        </p>
+        <p class="book--raiting">
+          <span class="book--quality">Рейтинг: </span>{{book.rating}}
+        </p>
+        <p class="book--subtitle">
+          {{book.subtitle}}
+        </p>
+        <p class="book--description">
+          {{book.description}}
+        </p>
+      </div>
+    </div>
+    <div class="book-feedback">
+      <div class="feedback__left">
+        <p class="feedback--ratting">4.0</p>
+        <p class="feedback--username">Lesnoy</p>
+      </div>
+      <p class="feedback--raeview">
+        "Нейромант" – отправная точка киберпанка, пророческая книга,
+        открывшая путь новому жанру. Гибсон, имея крайне скудные познания о
+        компьютерах, не только многое предугадал, но и оказал некоторое
+        влияние на пути их развития. Ведь именно он является отцом термина
+        «киберпространство» и парадигмы визуализации этого самого
+        киберпространства.
+      </p>
+    </div>
+  </section>
+</div>
