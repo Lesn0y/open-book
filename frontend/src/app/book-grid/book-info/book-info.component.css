@@ -1,29 +1,33 @@
-* {
-  margin: 0;
-  padding: 0;
+.book__block--thumbnail{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 900px;
+  z-index: -1;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("/assets/images/thumbnail/neuromant-1.png");
 }
 
-.book__section-up {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-}
-
-.book--info {
-  font-family: "Source Sans Pro", sans-serif;
-  font-size: 18px;
-
-  background-color: lightblue;
+.book--intro {
+  width: 550px;
+  color: #ffffff;
+  position: absolute;
+  top: 300px;
+  right: 50px;
 }
 
 .book--title {
-  font-size: 32px;
+  font-size: 50px;
   font-weight: 600;
 
   margin-bottom: 20px;
 }
 
-.book--quality {
-  font-weight: 600;
+.book--author {
+
 }
 
 .book--subtitle {
@@ -31,6 +35,29 @@
   padding-bottom: 20px;
 
   font-style: italic;
+}
+
+.book__section-info {
+  background-color: #c2cfd5;
+  margin-top: 780px;
+}
+
+.book--info {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+
+  position: relative;
+  top: -60px;
+  margin: 0 auto;
+  padding: 20px;
+  width: 90%;
+  background-color: #c2cfd5;
+
+  border-radius: 10px;
+
+  font-family: "Source Sans Pro", sans-serif;
+  color: #000000;
+  font-size: 18px;
 }
 
 .book-feedback {
@@ -42,5 +69,22 @@
   margin-top: 20px;
 
   display: grid;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 4fr 6fr;
+}
+
+.book--quality {
+  font-weight: 600;
+}
+
+.book-gallery {
+  margin: 10px 20px;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  column-gap: 30px;
+  row-gap: 30px;
+}
+
+.book__gallery--el {
+  border-radius: 10px;
+  width: 800px;
 }
