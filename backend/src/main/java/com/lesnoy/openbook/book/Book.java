@@ -2,6 +2,7 @@ package com.lesnoy.openbook.book;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.lesnoy.openbook.book.author.Author;
+import com.lesnoy.openbook.book.gallery.GalleryImage;
 import com.lesnoy.openbook.book.genre.Genre;
 import com.lesnoy.openbook.feedback.Feedback;
 import com.lesnoy.openbook.history.History;
@@ -46,6 +47,9 @@ public class Book {
     private List<Feedback> feedbacks;
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
     private List<History> history;
+    @OneToMany
+    @JoinColumn(name = "book_id")
+    private List<GalleryImage> galleryImage;
 }
 
 

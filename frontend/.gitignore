@@ -12,7 +12,7 @@ npm-debug.log
 yarn-error.log
 
 # IDEs and editors
-src/assets/images
+src/assets
 .idea/
 .project
 .classpath

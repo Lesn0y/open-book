@@ -3,6 +3,7 @@ package com.lesnoy.openbook.book;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
+import com.lesnoy.openbook.book.gallery.GalleryImage;
 import com.lesnoy.openbook.book.genre.Genre;
 import com.lesnoy.openbook.feedback.Feedback;
 import com.lesnoy.openbook.history.History;
@@ -59,6 +60,11 @@ public class BookSerializer extends StdSerializer<Book> {
             gen.writeStringField("date_issue", String.valueOf(history.getDateIssue()));
             gen.writeStringField("date_return", String.valueOf(history.getDateReturn()));
             gen.writeEndObject();
+        }
+        gen.writeEndArray();
+        gen.writeArrayFieldStart("gallery");
+        for (GalleryImage image : value.getGalleryImage()) {
+            gen.writeString(image.getImageUrl());
         }
         gen.writeEndArray();
         gen.writeEndObject();
