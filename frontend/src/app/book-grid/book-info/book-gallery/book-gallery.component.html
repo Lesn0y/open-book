@@ -1,0 +1,16 @@
+<div class="container">
+
+  <!-- Full-width images -->
+  <div class="current--loop" *ngFor="let image of gallery; let idx = index">
+    <div *ngIf="idx == currentIndex" class="mySlides">
+      <img [src]="image" class="mySlides--image">
+    </div>
+  </div>
+
+  <!-- Thumbnail images -->
+  <div class="row">
+    <div class="column" *ngFor="let image of gallery; let idx = index">
+      <img class="demo cursor" [src]="image" style="width:100%" (click)="switchIndex(idx)">
+    </div>
+  </div>
+</div>

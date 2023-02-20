@@ -1,5 +1,6 @@
 <div class="book__grid">
-  <div class="book__block--thumbnail">
+  <div class="book__block--thumbnail" [ngStyle]="
+  {backgroundImage: 'url(&quot;' + book.gallery[0] + '&quot;)'}">
   </div>
   <div class="book--intro">
     <p class="book--title">{{book.book_name}}</p>
@@ -9,12 +10,9 @@
   <div class="book__section-info">
     <div class="book--info">
       <div class="book-info-left">
-        <div class="book-gallery">
-          <img class="book__gallery--el" src="assets/images/thumbnail/neuromant-1.png">
-          <img class="book__gallery--el" src="assets/images/thumbnail/neuromant-2.png">
-          <img class="book__gallery--el" src="assets/images/thumbnail/neuromant-1.png">
-        </div>
+        <app-book-gallery [gallery]="book.gallery"></app-book-gallery>
       </div>
+
       <div class="book-info-right">
         <p class="book--description">
           {{book.description}}
@@ -26,6 +24,7 @@
           <span class="book--quality">Рейтинг: </span>{{book.rating}}
         </p>
       </div>
+
     </div>
   </div>
 </div>

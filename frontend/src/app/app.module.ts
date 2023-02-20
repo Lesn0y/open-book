@@ -9,6 +9,7 @@ import {RouterModule, Routes} from "@angular/router";
 import { BookGridComponent } from './book-grid/book-grid.component';
 import { BookInfoComponent } from './book-grid/book-info/book-info.component';
 import {FormsModule} from "@angular/forms";
+import { BookGalleryComponent } from './book-grid/book-info/book-gallery/book-gallery.component';
 
 const routeMapper: Routes = [
   {path: '', redirectTo: 'book', pathMatch: 'full'},
@@ -22,7 +23,8 @@ const routeMapper: Routes = [
     BookCardComponent,
     HeaderComponent,
     BookGridComponent,
-    BookInfoComponent
+    BookInfoComponent,
+    BookGalleryComponent
   ],
   imports: [
     BrowserModule,

@@ -1,10 +1,10 @@
 .header {
+  position: relative;
+  z-index: 1;
   padding: 0 100px;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   height: 110px;
   margin-bottom: 20px;
 }

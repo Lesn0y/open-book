@@ -1,0 +1,44 @@
+* {
+  box-sizing: border-box;
+}
+
+.container {
+}
+
+.mySlides {
+  display: block;
+}
+
+.mySlides--image{
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.cursor {
+  cursor: pointer;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.column {
+  float: left;
+}
+
+.demo {
+  opacity: 0.6;
+}
+
+.active,
+.demo:hover {
+  opacity: 1;
+}
