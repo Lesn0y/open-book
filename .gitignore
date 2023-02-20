@@ -14,6 +14,7 @@ target/
 .sts4-cache
 
 ### IntelliJ IDEA ###
+backend/src/main/resources/schema.sql
 .idea
 *.iws
 *.iml
