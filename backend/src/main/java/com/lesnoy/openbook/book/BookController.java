@@ -40,4 +40,9 @@ public class BookController {
     public ResponseEntity<Book> saveBook(@RequestBody Book book) {
         return new ResponseEntity<>(bookService.save(book), HttpStatus.CREATED);
     }
+
+    @PutMapping
+    public ResponseEntity<Book> updateBook(@RequestBody Book book) {
+        return new ResponseEntity<>(bookService.save(book), HttpStatus.ACCEPTED);
+    }
 }
