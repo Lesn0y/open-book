@@ -19,4 +19,8 @@ export class BookService {
   public getBooksById(id: number) {
     return this.http.get<Book>('http://localhost:8080/api/v1/book/' + id);
   }
+
+  public getBooksByGenre(genreId: number) {
+    return this.http.get<Book>('http://localhost:8080/api/v1/book?genre=' + genreId);
+  }
 }

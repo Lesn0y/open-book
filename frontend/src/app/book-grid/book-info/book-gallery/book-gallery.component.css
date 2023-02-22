@@ -42,3 +42,7 @@
 .demo:hover {
   opacity: 1;
 }
+
+.gallery--element{
+  height: 170px;
+}
