@@ -17,6 +17,13 @@ public class GalleryImage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(name = "book_id")
+    private int bookId;
     @Column(name = "image_url")
     private String imageUrl;
+
+    public GalleryImage(int bookId, String imageUrl) {
+        this.bookId = bookId;
+        this.imageUrl = imageUrl;
+    }
 }

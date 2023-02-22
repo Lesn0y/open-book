@@ -50,6 +50,19 @@ public class Book {
     @OneToMany
     @JoinColumn(name = "book_id")
     private List<GalleryImage> galleryImage;
+
+    public Book(String thumbnailUrl, String name,
+                Author author, int pageCount,
+                String subtitle, List<Genre> genreList,
+                String description) {
+        this.thumbnailUrl = thumbnailUrl;
+        this.name = name;
+        this.author = author;
+        this.pageCount = pageCount;
+        this.subtitle = subtitle;
+        this.genreList = genreList;
+        this.description = description;
+    }
 }
 
 

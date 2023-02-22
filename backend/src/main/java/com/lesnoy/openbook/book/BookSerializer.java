@@ -28,7 +28,8 @@ public class BookSerializer extends StdSerializer<Book> {
         gen.writeStringField("thumbnail_url", value.getThumbnailUrl());
         gen.writeStringField("book_name", value.getName());
         gen.writeStringField("author", value.getAuthor().getFullName());
-        if (!value.getFeedbacks().isEmpty()) {
+
+        if (value.getFeedbacks() != null) {
             gen.writeNumberField("rating", value.getFeedbacks()
                     .stream()
                     .map(Feedback::getRating)
@@ -36,37 +37,52 @@ public class BookSerializer extends StdSerializer<Book> {
         } else {
             gen.writeNumberField("rating", 0);
         }
+
         gen.writeNumberField("page_count", value.getPageCount());
         gen.writeStringField("subtitle", value.getSubtitle());
-        gen.writeArrayFieldStart("genre");
-        for (Genre genre : value.getGenreList()) {
-            gen.writeString(genre.getName());
+
+        if (value.getGenreList() != null) {
+            gen.writeArrayFieldStart("genre");
+            for (Genre genre : value.getGenreList()) {
+                gen.writeString(genre.getName());
+            }
+            gen.writeEndArray();
         }
-        gen.writeEndArray();
+
         gen.writeStringField("description", value.getDescription());
-        gen.writeArrayFieldStart("feedbacks");
-        for (Feedback feedback : value.getFeedbacks()) {
-            gen.writeStartObject();
-            gen.writeStringField("username", feedback.getUser().getUsername());
-            gen.writeStringField("review", feedback.getReview());
-            gen.writeNumberField("rating", feedback.getRating());
-            gen.writeEndObject();
+
+        if (value.getFeedbacks() != null) {
+            gen.writeArrayFieldStart("feedbacks");
+            for (Feedback feedback : value.getFeedbacks()) {
+                gen.writeStartObject();
+                gen.writeStringField("username", feedback.getUser().getUsername());
+                gen.writeStringField("review", feedback.getReview());
+                gen.writeNumberField("rating", feedback.getRating());
+                gen.writeEndObject();
+            }
+            gen.writeEndArray();
         }
-        gen.writeEndArray();
-        gen.writeArrayFieldStart("history");
-        for (History history : value.getHistory()) {
-            gen.writeStartObject();
-            gen.writeStringField("username", history.getUser().getUsername());
-            gen.writeStringField("date_issue", String.valueOf(history.getDateIssue()));
-            gen.writeStringField("date_return", String.valueOf(history.getDateReturn()));
-            gen.writeEndObject();
+
+        if (value.getHistory() != null) {
+            gen.writeArrayFieldStart("history");
+            for (History history : value.getHistory()) {
+                gen.writeStartObject();
+                gen.writeStringField("username", history.getUser().getUsername());
+                gen.writeStringField("date_issue", String.valueOf(history.getDateIssue()));
+                gen.writeStringField("date_return", String.valueOf(history.getDateReturn()));
+                gen.writeEndObject();
+            }
+            gen.writeEndArray();
         }
-        gen.writeEndArray();
-        gen.writeArrayFieldStart("gallery");
-        for (GalleryImage image : value.getGalleryImage()) {
-            gen.writeString(image.getImageUrl());
+
+        if (value.getGalleryImage() != null) {
+            gen.writeArrayFieldStart("gallery");
+            for (GalleryImage image : value.getGalleryImage()) {
+                gen.writeString(image.getImageUrl());
+            }
+            gen.writeEndArray();
         }
-        gen.writeEndArray();
+
         gen.writeEndObject();
     }
 }

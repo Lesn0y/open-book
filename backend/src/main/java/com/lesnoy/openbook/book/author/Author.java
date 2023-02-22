@@ -25,4 +25,8 @@ public class Author {
     private String fullName;
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
     private Set<Book> books;
+
+    public Author(String fullName) {
+        this.fullName = fullName;
+    }
 }

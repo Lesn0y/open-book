@@ -1,5 +1,7 @@
 package com.lesnoy.openbook.book;
 
+import com.lesnoy.openbook.book.dto.PostBookRequest;
+import com.lesnoy.openbook.book.gallery.GalleryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -15,6 +17,7 @@ import java.util.List;
 public class BookController {
 
     private final BookService bookService;
+    private final GalleryService galleryService;
 
     @GetMapping
     public ResponseEntity<Page<List<Book>>> getAllBook(
@@ -37,12 +40,14 @@ public class BookController {
     }
 
     @PostMapping
-    public ResponseEntity<Book> saveBook(@RequestBody Book book) {
-        return new ResponseEntity<>(bookService.save(book), HttpStatus.CREATED);
+    public ResponseEntity<Book> saveBook(@RequestBody PostBookRequest bookDto) {
+        Book book = bookService.save(bookDto);
+        galleryService.saveGallery(book.getId(), bookDto.getGallery());
+        return new ResponseEntity<>(book, HttpStatus.CREATED);
     }
 
     @PutMapping
-    public ResponseEntity<Book> updateBook(@RequestBody Book book) {
-        return new ResponseEntity<>(bookService.save(book), HttpStatus.ACCEPTED);
+    public ResponseEntity<Book> updateBook(@RequestBody PostBookRequest bookDto) {
+        return new ResponseEntity<>(bookService.save(bookDto), HttpStatus.ACCEPTED);
     }
 }
