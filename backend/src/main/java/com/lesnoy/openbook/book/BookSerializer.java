@@ -29,7 +29,7 @@ public class BookSerializer extends StdSerializer<Book> {
         gen.writeStringField("book_name", value.getName());
         gen.writeStringField("author", value.getAuthor().getFullName());
 
-        if (value.getFeedbacks() != null) {
+        if (value.getFeedbacks() != null && !value.getFeedbacks().isEmpty()) {
             gen.writeNumberField("rating", value.getFeedbacks()
                     .stream()
                     .map(Feedback::getRating)
@@ -41,7 +41,7 @@ public class BookSerializer extends StdSerializer<Book> {
         gen.writeNumberField("page_count", value.getPageCount());
         gen.writeStringField("subtitle", value.getSubtitle());
 
-        if (value.getGenreList() != null) {
+        if (value.getGenreList() != null && !value.getGenreList().isEmpty()) {
             gen.writeArrayFieldStart("genre");
             for (Genre genre : value.getGenreList()) {
                 gen.writeString(genre.getName());
@@ -51,7 +51,8 @@ public class BookSerializer extends StdSerializer<Book> {
 
         gen.writeStringField("description", value.getDescription());
 
-        if (value.getFeedbacks() != null) {
+        if (value.getFeedbacks() != null && !value.getFeedbacks().isEmpty()) {
+
             gen.writeArrayFieldStart("feedbacks");
             for (Feedback feedback : value.getFeedbacks()) {
                 gen.writeStartObject();
@@ -63,7 +64,7 @@ public class BookSerializer extends StdSerializer<Book> {
             gen.writeEndArray();
         }
 
-        if (value.getHistory() != null) {
+        if (value.getHistory() != null && !value.getHistory().isEmpty()) {
             gen.writeArrayFieldStart("history");
             for (History history : value.getHistory()) {
                 gen.writeStartObject();
@@ -75,13 +76,14 @@ public class BookSerializer extends StdSerializer<Book> {
             gen.writeEndArray();
         }
 
-        if (value.getGalleryImage() != null) {
+        if (value.getGalleryImage() != null && !value.getGalleryImage().isEmpty()) {
             gen.writeArrayFieldStart("gallery");
             for (GalleryImage image : value.getGalleryImage()) {
                 gen.writeString(image.getImageUrl());
             }
             gen.writeEndArray();
         }
+
 
         gen.writeEndObject();
     }
