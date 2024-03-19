@@ -1,4 +1,4 @@
-package org.lesnoy.inventoryservice.exceptions;
+package org.lesnoy.bookservice.exceptions;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

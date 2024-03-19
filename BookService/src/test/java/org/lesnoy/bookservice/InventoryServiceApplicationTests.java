@@ -1,4 +1,4 @@
-package org.lesnoy.inventoryservice;
+package org.lesnoy.bookservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

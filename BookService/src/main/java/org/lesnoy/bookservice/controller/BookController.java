@@ -1,10 +1,10 @@
-package org.lesnoy.inventoryservice.controller;
+package org.lesnoy.bookservice.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.lesnoy.inventoryservice.dto.BookRequest;
-import org.lesnoy.inventoryservice.exceptions.BookNotFoundException;
-import org.lesnoy.inventoryservice.model.Book;
-import org.lesnoy.inventoryservice.service.BookService;
+import org.lesnoy.bookservice.dto.BookRequest;
+import org.lesnoy.bookservice.exceptions.BookNotFoundException;
+import org.lesnoy.bookservice.model.Book;
+import org.lesnoy.bookservice.service.BookService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,11 +19,16 @@ public class BookController {
     private final BookService service;
 
     @GetMapping
-    public ResponseEntity<List<Book>> getAllBooks(@RequestParam(value = "in_stock", required = false) Boolean inStock) {
-        if (inStock != null) {
-            return ResponseEntity.ok((service.getAllBooksInStock(inStock)));
+    public ResponseEntity<List<Book>> getAllBooks(@RequestParam(value = "in_stock", required = false) Boolean inStock,
+                                                  @RequestParam(value = "item_id", required = false) List<Long> itemsId) {
+        if (itemsId != null) {
+            return ResponseEntity.ok(service.checkBookInStock(itemsId));
+        } else {
+            if (inStock != null) {
+                return ResponseEntity.ok((service.getAllBooksInStock(inStock)));
+            }
+            return ResponseEntity.ok(service.getAllBooks());
         }
-        return ResponseEntity.ok(service.getAllBooks());
     }
 
     @GetMapping("/{id}")

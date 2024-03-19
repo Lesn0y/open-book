@@ -1,4 +1,4 @@
-package org.lesnoy.inventoryservice.exceptions;
+package org.lesnoy.bookservice.exceptions;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;

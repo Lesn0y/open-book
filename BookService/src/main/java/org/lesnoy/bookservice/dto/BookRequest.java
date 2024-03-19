@@ -1,4 +1,4 @@
-package org.lesnoy.inventoryservice.dto;
+package org.lesnoy.bookservice.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

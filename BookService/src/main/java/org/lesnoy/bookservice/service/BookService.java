@@ -1,11 +1,11 @@
-package org.lesnoy.inventoryservice.service;
+package org.lesnoy.bookservice.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.lesnoy.inventoryservice.dao.BookRepository;
-import org.lesnoy.inventoryservice.dto.BookRequest;
-import org.lesnoy.inventoryservice.exceptions.BookNotFoundException;
-import org.lesnoy.inventoryservice.model.Book;
+import org.lesnoy.bookservice.dao.BookRepository;
+import org.lesnoy.bookservice.dto.BookRequest;
+import org.lesnoy.bookservice.exceptions.BookNotFoundException;
+import org.lesnoy.bookservice.model.Book;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,6 +26,11 @@ public class BookService {
     @Transactional(readOnly = true)
     public List<Book> getAllBooksInStock(boolean inStock) {
         return repository.findBooksByInStock(inStock);
+    }
+
+    @Transactional
+    public List<Book> checkBookInStock(List<Long> itemsId) {
+        return repository.findByIdInAndInStockTrue(itemsId);
     }
 
     @Transactional(readOnly = true)
@@ -64,10 +69,9 @@ public class BookService {
     }
 
     @Transactional
-    public boolean deleteBookById(long id) throws BookNotFoundException {
+    public void deleteBookById(long id) throws BookNotFoundException {
         Book book = getBookById(id);
         repository.delete(book);
         log.info("Book " + book.getName() + "/" + id + " was deleted");
-        return true;
     }
 }

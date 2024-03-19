@@ -1,6 +1,6 @@
 spring:
   application:
-    name: inventor-service
+    name: book-service
 
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres

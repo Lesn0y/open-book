@@ -1,4 +1,4 @@
-package org.lesnoy.inventoryservice.model;
+package org.lesnoy.bookservice.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

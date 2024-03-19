@@ -1,4 +1,4 @@
-package org.lesnoy.inventoryservice.exceptions;
+package org.lesnoy.bookservice.exceptions;
 
 public class BookNotFoundException extends Exception{
 
