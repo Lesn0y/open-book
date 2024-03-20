@@ -32,7 +32,7 @@ public class BookController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Book> getBookById(@PathVariable("id") Long id) throws BookNotFoundException {
+    public ResponseEntity<Book> getBookById(@PathVariable Long id) throws BookNotFoundException {
         return ResponseEntity.ok(service.getBookById(id));
     }
 
@@ -42,7 +42,7 @@ public class BookController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Book> updateBookById(@PathVariable("id") Long id,
+    public ResponseEntity<Book> updateBookById(@PathVariable Long id,
                                                @RequestBody(required = false) BookRequest bookDTO) throws BookNotFoundException {
         if (bookDTO == null) {
             return ResponseEntity.ok(service.changeStateInStock(id));
@@ -51,7 +51,7 @@ public class BookController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteBookById(@PathVariable("id") Long id) throws BookNotFoundException {
+    public ResponseEntity<?> deleteBookById(@PathVariable Long id) throws BookNotFoundException {
         service.deleteBookById(id);
         return ResponseEntity.noContent().build();
     }
