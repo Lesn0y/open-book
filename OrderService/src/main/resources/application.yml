@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: order-service
+
+  data:
+    mongodb:
+      database: orders
+      port: 27017
